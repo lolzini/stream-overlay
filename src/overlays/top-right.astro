@@ -1,0 +1,19 @@
+---
+import InlineContainer from "@/components/inline-container.astro";
+
+import Tiktok from "./tiktok.astro";
+import Twitch from "./twitch.astro";
+import Live from "@/components/live.astro";
+import SteamUsername from "@/components/stream-username.astro";
+---
+
+<InlineContainer
+  class="absolute right-0 flex items-center justify-between gap-4"
+>
+  <InlineContainer class="mt-1 gap-4 text-4xl text-white drop-shadow">
+    <Tiktok />
+    <Twitch />
+    <SteamUsername />
+  </InlineContainer>
+  <Live />
+</InlineContainer>

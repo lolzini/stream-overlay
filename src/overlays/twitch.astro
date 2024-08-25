@@ -1,0 +1,35 @@
+---
+import { FaTwitch } from "react-icons/fa6";
+---
+
+<span class="relative w-10">
+  <FaTwitch id="icon" className="custom-shadow absolute" />
+</span>
+
+<style>
+  #icon {
+    top: 0;
+    left: 0;
+
+    animation: twitch 10s linear infinite;
+  }
+
+  @keyframes twitch {
+    0% {
+      fill: currentColor;
+      transform: scale(1);
+    }
+    80% {
+      fill: currentColor;
+      transform: scale(1);
+    }
+    90% {
+      fill: #6441a5;
+      transform: scale(1.1);
+    }
+    100% {
+      fill: currentColor;
+      transform: scale(1);
+    }
+  }
+</style>

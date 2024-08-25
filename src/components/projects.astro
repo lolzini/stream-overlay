@@ -1,0 +1,61 @@
+<section
+  id="projects"
+  class:list={[
+    "absolute bottom-96 left-20",
+    "flex flex-col items-center gap-2",
+  ]}
+>
+  <span
+    class="w-fit -skew-x-6 rounded bg-[#eeeeee] px-2 py-2 text-4xl font-bold text-[#1a1a1a]"
+  >
+    iniz.lol
+  </span>
+  <span
+    class="w-fit -skew-x-6 rounded bg-[#eeeeee] px-2 py-2 text-4xl font-bold text-[#1a1a1a]"
+  >
+    quieroserweb.dev
+  </span>
+</section>
+<script>
+  import { getRandomInt } from "@/helpers";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const projects = document.getElementById("projects") as HTMLElement;
+    setInterval(
+      () => {
+        projects.style.animation = "show 15s ease-in-out";
+        setTimeout(() => {
+          projects.style.animation = "none";
+        }, 15_000);
+      },
+      getRandomInt(60_000, 120_000),
+    );
+  });
+</script>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Caveat+Brush);
+
+  #projects {
+    font-family: "Caveat Brush", serif;
+    opacity: 0;
+  }
+
+  @keyframes show {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    10% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+    90% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+</style>

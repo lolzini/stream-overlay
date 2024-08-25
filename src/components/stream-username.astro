@@ -1,0 +1,42 @@
+<div id="wrapper" class="overflow-hidden">
+  <span id="stream-username" class="custom-shadow w-fit font-bold"
+    >lolzini_es</span
+  >
+</div>
+<script>
+  import { getRandomInt } from "@/helpers";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const wrapper = document.getElementById("wrapper") as HTMLElement;
+    setInterval(
+      () => {
+        wrapper.style.animation = "grow 15s ease-in-out";
+        setTimeout(() => {
+          wrapper.style.animation = "none";
+        }, 15_000);
+      },
+      getRandomInt(60_000, 120_000),
+    );
+  });
+</script>
+<style>
+  div {
+    max-width: fit-content;
+    width: 0px;
+  }
+
+  @keyframes grow {
+    0% {
+      width: 0px;
+    }
+    10% {
+      width: 160px;
+    }
+    90% {
+      width: 160px;
+    }
+    100% {
+      width: 0px;
+    }
+  }
+</style>
