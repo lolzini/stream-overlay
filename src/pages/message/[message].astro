@@ -1,0 +1,47 @@
+---
+import Layout from "@/components/layout.astro";
+const { message = "Vuelvo enseguida" } = Astro.params;
+---
+
+<Layout>
+  <main class="flex h-screen w-screen items-center justify-center">
+    <div>
+      <p class="text-[#eeeeee]">{message}</p>
+    </div>
+  </main>
+</Layout>
+<script>
+  const message = document.querySelector("p") as HTMLElement;
+
+  const letters = message?.textContent?.split("");
+  message.textContent = "";
+
+  letters?.forEach((c, i) => {
+    const el = document.createElement("span");
+    el.textContent = c;
+    el.style.minWidth = "2rem";
+    el.style.display = "inline-block";
+    el.style.animation = "bounce 3s ease-in-out infinite";
+    el.style.animationDelay = `${0.2 * i}s`;
+    message.append(el);
+  });
+</script>
+<style>
+  p {
+    font-family: "Caveat Brush";
+    font-size: 16rem;
+    filter: drop-shadow(1rem 1rem 0 black);
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0%);
+    }
+    50% {
+      transform: translateY(20%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+</style>
