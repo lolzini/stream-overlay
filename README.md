@@ -1,47 +1,35 @@
-# Astro Starter Kit: Minimal
+# Stream overlay
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Este es un proyecto para crear algunos de los gráficos que aparecen en el [LIVE](https://www.tiktok.com/@lolzini_es/live).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Cómo usar
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Personalmente utilizo [OBS](https://obsproject.com/) para crear el live y utilizo `browser source` para agregar las diferentes fuentes de gráficos.
 
-## 🚀 Project Structure
+Por ejemplo `https://localhost:4321/` para agregar los gráficos principales `index.astro`
 
-Inside of your Astro project, you'll see the following folders and files:
+O `https://localhost:4321/background` para agregar los gráficos de fondo.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Sobre las páginas
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### index
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Contiene los gráficos de el logo de Twitch y TikTok, Live y el nombre del canal.
 
-Any static assets, like images, can be placed in the `public/` directory.
+### background
 
-## 🧞 Commands
+Contiene gráficos para usar como fondo.
 
-All commands are run from the root of the project, from a terminal:
+### message/[message]
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Contiene texto animado que puede ser cambiado mediante el `slug`.
 
-## 👀 Want to learn more?
+El mensaje debe estar en formato URI, podemos usar `encodeURI()` dentro del navegador para obtener el texto necesario.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Por ejemplo: `Hola mundo` pasa a ser `Hola%20mundo`.
+
+Entonces en el link debemos usar `http://localhost:4321/message/Hola%20mundo`
+
+### projects
+
+Contiene los gráficos animados que mencionan los links a redes sociales y el blog.
