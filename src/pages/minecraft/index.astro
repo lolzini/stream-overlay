@@ -1,0 +1,73 @@
+---
+import Layout from "@/components/layout.astro";
+import Main from "@/components/main.astro";
+---
+
+<Layout>
+  <Main>
+    <div
+      id="container"
+      class="bg-[#3a3a3a] p-20 text-center font-minecraft text-6xl text-white opacity-0"
+    >
+      <h1 class="mb-10 text-7xl">Servidor con colaboración</h1>
+      <div class="flex flex-col gap-4">
+        <p>Minecraft: <span class="text-yellow-400">1.19 - 1.20.1</span></p>
+        <p>IP: <span class="text-yellow-400">play.quantumcraft.xyz </span></p>
+        <p class="text-5xl">Si eres de Bedrock</p>
+        <p>Puerto: <span class="text-yellow-400">19132</span></p>
+        <p class="mt-4 text-4xl">
+          Patrocinado por: <span class="text-rose-500">Whools.net</span>
+        </p>
+      </div>
+    </div>
+  </Main>
+</Layout>
+<style>
+  @font-face {
+    font-family: "Minecraft";
+    src: url("/fonts/MinecraftRegular-Bmg3.otf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  #container {
+    animation: animation 15s cubic-bezier(0.38, 0.07, 0.05, 1.77);
+    animation-iteration-count: 1;
+  }
+
+  #container::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: saturate(60%);
+    background-image: url("/img/plank-texture.jpg");
+  }
+
+  h1,
+  p {
+    text-shadow: 0.075em 0.075em 0 black;
+  }
+
+  @keyframes animation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    5% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    95% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+</style>
