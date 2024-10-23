@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <div class="center">
+    <div class="candle">
+      <div class="candle-flame"></div>
+      <div class="candle-wick"></div>
+      <div class="candle-wax"></div>
+      <div class="candle-stand"></div>
+    </div>
+  </div>
+</div>
+<style>
+  .candle {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    align-items: center;
+  }
+  .candle-flame {
+    width: 15px;
+    height: 30px;
+    background: #ffad00;
+    border-radius: 8px 8px 8px 8px / 20px 20px 8px 8px;
+    box-shadow: 0px 0px 20px 0px #ffad00;
+    animation:
+      flame-twirl 15s ease infinite,
+      glow 2s ease infinite;
+  }
+  .candle-wick {
+    height: 10px;
+    width: 3px;
+    background: #ad87a9;
+  }
+  .candle-wax {
+    width: 40px;
+    height: 110px;
+    background: #fcf9ad;
+    border-radius: 6px;
+    box-shadow: inset -15px 0px 0px -10px #d3d3c1;
+  }
+  .candle-stand {
+    width: 100px;
+    height: 8px;
+    background: #1c233e;
+    border-radius: 3px;
+  }
+  @keyframes flame-twirl {
+    0%,
+    22%,
+    49%,
+    62%,
+    81%,
+    100% {
+      border-radius: 2px 14px 8px 8px / 20px 20px 8px 8px;
+    }
+    14%,
+    32%,
+    56%,
+    70%,
+    89% {
+      border-radius: 14px 2px 8px 8px / 20px 20px 8px 8px;
+    }
+  }
+  @keyframes glow {
+    0%,
+    30%,
+    60%,
+    80%,
+    100% {
+      box-shadow: 0 0 20px 0 #ffad00;
+    }
+    20%,
+    50%,
+    70% {
+      box-shadow: 0 0 22px 0 #ffad00;
+    }
+  }
+</style>

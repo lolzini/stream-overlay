@@ -1,0 +1,177 @@
+<div class="gooeys center">
+  <canvas id="canvas"></canvas>
+</div>
+<div class="glow center"></div>
+<div class="center shadow"></div>
+<div class="pot-top center"></div>
+<div class="pot center"></div>
+
+<svg>
+  <defs>
+    <filter id="filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"
+      ></feGaussianBlur>
+      <feColorMatrix
+        in="blur"
+        mode="matrix"
+        values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 17 -10"
+        result="filter"></feColorMatrix>
+      <feBlend></feBlend>
+    </filter>
+  </defs>
+</svg>
+
+<style>
+  .center {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gooeys {
+    filter: url("#filter");
+  }
+
+  .pot {
+    box-sizing: border-box;
+    width: 250px;
+    height: 120px;
+    top: 100px;
+    background: radial-gradient(#121, #111 45%);
+    border-radius: 25px 25px 80px 80px;
+  }
+
+  .pot-top {
+    box-sizing: border-box;
+    width: 250px;
+    height: 40px;
+    background-color: #111;
+    top: -50px;
+    border-radius: 20px 20px 80px 80px;
+    box-shadow: #4f4 0 10px 45px -17px inset;
+  }
+
+  .glow {
+    top: -100px;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    color: rgba(68, 255, 68, 0.4);
+    box-shadow: 0 0 150px 50px;
+    animation: glow 0.5s linear infinite alternate;
+  }
+
+  .shadow {
+    top: 210px;
+    width: 220px;
+    height: 20px;
+    background-color: #111;
+    border-radius: 50%;
+  }
+
+  @keyframes glow {
+    to {
+      box-shadow: 0 0 120px 50px;
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const context = canvas.getContext("2d");
+  let W = (canvas.width = window.innerWidth);
+  let H = (canvas.height = window.innerHeight);
+
+  const generatorStock = [new ParticleGenerator(2, 3, 30, 30)];
+
+  const randomInt = (min, max) =>
+    Math.floor(min + Math.random() * (max - min + 1));
+
+  class Particle {
+    constructor(vx, vy, size) {
+      this.radius = randomInt(0, size);
+      this.x = W / 2;
+      this.y = H / 2;
+      this.alpha = 1;
+      this.vx = randomInt(-vx, vx);
+      this.vy =
+        Math.random() < 0.1 ? randomInt(-vy, -vy - 3) : randomInt(0, -vy);
+      this.lifetime = 100;
+    }
+
+    update() {
+      this.lifetime -= 2;
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.lifetime < 20) {
+        this.radius -= 2;
+      }
+
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+      context.fillStyle = "rgba(255,255,255,0.5)";
+      context.strokeStyle = "#2f2";
+      context.lineWidth = 10;
+      context.fill();
+      context.stroke();
+      context.closePath();
+    }
+  }
+
+  class ParticleGenerator {
+    constructor(vx, vy, size, maxParticles) {
+      this.size = size;
+      this.vx = vx;
+      this.vy = vy;
+      this.maxParticles = maxParticles;
+      this.particles = [];
+      this.freq = 0.5;
+    }
+
+    animate() {
+      if (
+        this.particles.length < this.maxParticles &&
+        Math.random() < this.freq
+      ) {
+        this.particles.push(new Particle(this.vx, this.vy, this.size));
+        if (this.particles.length === this.maxParticles / 2) {
+          this.freq = 0.1;
+        }
+      }
+
+      this.particles.forEach((p, index) => {
+        p.update();
+        if (p.radius < 10) {
+          this.particles[index] = new Particle(this.vx, this.vy, this.size);
+        }
+      });
+    }
+  }
+
+  const update = () => {
+    context.clearRect(0, 0, W, H);
+    generatorStock.forEach((generator) => generator.animate());
+    window.requestAnimationFrame(update);
+  };
+
+  update();
+
+  const resizeCanvas = () => {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+  };
+
+  window.addEventListener("resize", resizeCanvas);
+</script>

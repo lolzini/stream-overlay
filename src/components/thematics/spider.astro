@@ -1,0 +1,264 @@
+---
+import Tiktok from "@/overlays/tiktok.astro";
+import InlineContainer from "../inline-container.astro";
+import Twitch from "@/overlays/twitch.astro";
+import StreamUsername from "../stream-username.astro";
+import Live from "../live.astro";
+---
+
+<div class="box-canvas">
+  <div class="inner">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="spider">
+    <InlineContainer
+      class="absolute -right-20 top-28 flex items-center justify-between gap-4 bg-[#1a1a1a] pl-2"
+    >
+      <InlineContainer class="mt-1 gap-4 text-4xl text-white drop-shadow">
+        <Tiktok />
+        <Twitch />
+        <StreamUsername />
+      </InlineContainer>
+      <Live />
+    </InlineContainer>
+
+    <div class="body">
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+    </div>
+  </div>
+</div>
+<style>
+  .box-canvas {
+    position: relative;
+    margin: auto;
+    display: block;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    width: 350px;
+    height: 600px;
+  }
+
+  .inner {
+    margin: 100px;
+    position: absolute;
+    height: 100px;
+    width: 150px;
+  }
+
+  .circle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 4px 0 0 white;
+  }
+
+  .circle:nth-child(1) {
+    bottom: 0;
+    transform: rotate(-45deg);
+  }
+
+  .circle:nth-child(2) {
+    bottom: -25px;
+    left: 50px;
+    transform: rotate(-90deg);
+  }
+
+  .circle:nth-child(3) {
+    bottom: 0;
+    left: 100px;
+    transform: rotate(-135deg);
+  }
+
+  .circle:nth-child(4) {
+    top: -8px;
+    transform: rotate(45deg);
+  }
+
+  .circle:nth-child(5) {
+    top: -33px;
+    left: 50px;
+    transform: rotate(90deg);
+  }
+
+  .circle:nth-child(6) {
+    top: -8px;
+    left: 100px;
+    transform: rotate(135deg);
+  }
+
+  .circle::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 4px 0 0 white;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .circle:nth-child(1)::before {
+    top: calc(50% - 20px);
+  }
+
+  .circle:nth-child(3)::before {
+    top: calc(50% + 20px);
+  }
+
+  .circle:nth-child(4)::before {
+    top: calc(50% + 20px);
+  }
+
+  .circle:nth-child(6)::before {
+    top: calc(50% - 20px);
+  }
+
+  .line {
+    position: absolute;
+    width: 340px;
+    height: 3px;
+    background: white;
+  }
+
+  .line:nth-child(2) {
+    transform: rotate(59deg);
+    transform-origin: top left;
+    left: 90px;
+  }
+
+  .line:nth-child(3) {
+    transform: rotate(-59deg);
+    transform-origin: top right;
+    left: -80px;
+  }
+
+  .line:nth-child(4) {
+    top: 145px;
+  }
+
+  .spider {
+    --spider-color: #40434f;
+
+    position: absolute;
+    width: 75px;
+    height: 175px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: center top;
+    top: 148px;
+    animation: swing 1s infinite ease-in-out;
+    animation-direction: alternate-reverse;
+  }
+
+  @keyframes swing {
+    0% {
+      transform: translateX(-50%) rotate(25deg);
+    }
+
+    100% {
+      transform: translateX(-50%) rotate(-25deg);
+    }
+  }
+
+  .spider::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100px;
+    background: white;
+  }
+
+  .body {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    border-radius: 50% 50% 40% 40%;
+    background: var(--spider-color);
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+  }
+
+  .body::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: black;
+    border-radius: 50%;
+    border: 3px solid white;
+    bottom: 6px;
+    left: 3px;
+  }
+
+  .body::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: black;
+    border-radius: 50%;
+    border: 3px solid white;
+    bottom: 6px;
+    right: 3px;
+  }
+
+  .leg {
+    position: absolute;
+
+    top: 10px;
+    width: 30px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 -3px 0 var(--spider-color);
+  }
+
+  .leg.left {
+    left: -25px;
+  }
+
+  .leg.right {
+    right: -25px;
+  }
+
+  .leg::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 30px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 -3px 0 var(--spider-color);
+  }
+
+  .leg::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 -3px 0 var(--spider-color);
+  }
+
+  .leg.left::after {
+    left: 8px;
+  }
+
+  .leg.right::after {
+    right: 8px;
+  }
+</style>
