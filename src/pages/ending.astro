@@ -1,0 +1,70 @@
+---
+import Layout from "@/components/layout.astro";
+import {
+  FaCodepen,
+  FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaTiktok,
+  FaTwitch,
+  FaWhatsapp,
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
+---
+
+<Layout>
+  <div class="h-screen">
+    <section
+      class="font-display ite custom-shadow-xl mx-20 my-6 flex flex-col justify-center gap-10 text-8xl text-white"
+    >
+      <div class="flex flex-col gap-8">
+        <p>Visita nuestras redes</p>
+        <p>👇 Todos los links</p>
+        <p>
+          <span>🔗 iniz.lol </span>
+        </p>
+      </div>
+      <div
+        class="flex h-[45vh] w-fit flex-col flex-wrap items-center justify-center gap-20"
+      >
+        <FaTiktok className="animate-pulse" />
+        <FaDiscord className="animate-pulse" />
+        <FaFacebook className="animate-pulse" />
+        <FaWhatsapp className="animate-pulse" />
+        <FaTwitch className="animate-pulse" />
+        <FaYoutube className="animate-pulse" />
+        <FaXTwitter className="animate-pulse" />
+        <FaCodepen className="animate-pulse" />
+        <FaGithub className="animate-pulse" />
+      </div>
+      <p>
+        <span>quieroserweb.dev</span>
+      </p>
+    </section>
+  </div>
+  <!-- <section
+      class:list={[
+        "shadow-lh m-20 flex w-fit flex-col items-center justify-center gap-4 text-4xl text-white",
+      ]}
+    >
+      <FaTiktok size={200} />
+      <span class="font-bold">@lolzini_es</span>
+    </section>
+    <section
+      class:list={[
+        "shadow-lh m-20 flex w-fit flex-col items-center justify-center gap-4 text-4xl text-white",
+      ]}
+    >
+      <FaTwitch size={200} />
+      <span class="font-bold">@lolzini_es</span>
+    </section> -->
+</Layout>
+
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Caveat+Brush);
+
+  .font-display {
+    font-family: "Caveat Brush", serif;
+  }
+</style>
