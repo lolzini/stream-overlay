@@ -13,8 +13,8 @@ const users = res.sort(byInteractionCount);
 ---
 
 <Layout class="h-screen overflow-y-hidden bg-black text-white">
-  <div id="container" class="mx-auto my-40 text-center opacity-0">
-    <div class="flex flex-col gap-10">
+  <div id="container" class="mx-auto my-40 flex text-center opacity-0">
+    <div class="flex flex-col gap-64">
       <section class="flex flex-col gap-3">
         <h2 class="my-4 text-8xl">Comunidad</h2>
         {
@@ -35,7 +35,8 @@ const users = res.sort(byInteractionCount);
       </section>
       <section class="flex flex-col gap-3">
         <h2 class="my-4 text-8xl">Soundtrack</h2>
-        <p class="text-6xl">La chica lo-fi</p>
+        <p class="text-6xl">La señora de las quesadillas (ASMR)</p>
+        <p class="text-6xl">La canción de bob esponja</p>
       </section>
       <section class="flex flex-col gap-3">
         <h2 class="my-4 text-8xl">Fotografía</h2>
@@ -89,16 +90,16 @@ const users = res.sort(byInteractionCount);
   }
 
   #container {
-    animation: moveUp 30s linear 1;
+    animation: moveUp 60s linear 1;
   }
 
   #profile {
-    animation: fadeIn 50s linear 1;
+    animation: fadeIn 90s linear 1;
   }
 
   @keyframes moveUp {
     0% {
-      transform: translateY(100%);
+      transform: translateY(150vh);
       opacity: 1;
     }
     99% {
