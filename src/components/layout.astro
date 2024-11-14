@@ -1,3 +1,7 @@
+---
+const { class: className } = Astro.props;
+---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,7 +10,7 @@
     <meta name="generator" content={Astro.generator} />
     <title>Overlay</title>
   </head>
-  <body>
+  <body class:list={[className]}>
     <slot />
   </body>
 </html>

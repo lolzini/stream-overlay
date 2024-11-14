@@ -1,0 +1,131 @@
+---
+import Layout from "@/components/layout.astro";
+import { fetchAllPlatforms } from "./_helpers";
+
+const byInteractionCount = (a, b) =>
+  b["interaction_count"] - a["interaction_count"];
+
+const date = new Date().toISOString().split("T")[0];
+
+const res = await fetchAllPlatforms(date);
+
+const users = res.sort(byInteractionCount);
+---
+
+<Layout class="h-screen overflow-y-hidden bg-black text-white">
+  <div id="container" class="mx-auto my-40 text-center opacity-0">
+    <div class="flex flex-col gap-10">
+      <section class="flex flex-col gap-3">
+        <h2 class="my-4 text-8xl">Comunidad</h2>
+        {
+          users.map(({ username, platform }) => (
+            <p
+              class:list={[
+                "text-6xl",
+                {
+                  "text-purple-700": platform === "twitch",
+                  "text-yellow-500": platform === "tiktok",
+                },
+              ]}
+            >
+              {username}
+            </p>
+          ))
+        }
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="my-4 text-8xl">Soundtrack</h2>
+        <p class="text-6xl">La chica lo-fi</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="my-4 text-8xl">Fotografía</h2>
+        <p class="text-6xl">OBS</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="my-4 text-8xl">Dirección</h2>
+        <p class="text-6xl">lolzini</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="my-4 text-8xl">Producción</h2>
+        <p class="text-6xl">lolzini</p>
+      </section>
+      <section class="my-20 flex flex-col gap-10">
+        <p class="flex min-h-screen items-center justify-center p-20 text-5xl">
+          Ningún programador fue obligado a hacer horas extras durante la
+          realización de este stream
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <section
+    id="profile"
+    class:list={[
+      "opacity-0",
+      "fixed bottom-0 left-0 right-0 top-0 flex h-screen flex-col items-center justify-center",
+    ]}
+  >
+    <div
+      class="mx-auto mt-20 w-fit rounded-full border-4 border-white bg-[#1a1a1a]"
+    >
+      <img class="rounded-full" src="/img/pp.png" alt="" />
+    </div>
+    <p id="lolzini" class="text-9xl">lolzini</p>
+  </section>
+</Layout>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Caveat+Brush&family=Freckle+Face&display=swap");
+
+  h2 {
+    font-family: "Freckle Face", system-ui;
+  }
+
+  body {
+    font-family: "Bagel Fat One", system-ui;
+  }
+
+  #lolzini {
+    font-family: "Caveat Brush", serif;
+  }
+
+  #container {
+    animation: moveUp 30s linear 1;
+  }
+
+  #profile {
+    animation: fadeIn 50s linear 1;
+  }
+
+  @keyframes moveUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 1;
+    }
+    99% {
+      transform: translateY(-150%);
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-150%);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
