@@ -1,0 +1,100 @@
+---
+import Layout from "@/components/layout.astro";
+---
+
+<Layout />
+<style is:global>
+  /* Snowflake base style */
+  .snowflake {
+    position: fixed;
+    top: -50px;
+    color: white;
+    font-size: 1em;
+    opacity: 0.8;
+    pointer-events: none;
+    user-select: none;
+    animation: fall linear infinite;
+  }
+
+  /* Falling animation with slight drift */
+  @keyframes fall {
+    from {
+      transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    to {
+      transform: translateX(var(--horizontal-drift)) translateY(100vh)
+        rotate(var(--rotation));
+    }
+  }
+
+  /* Lens flare effect style */
+  .flare {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7))
+      drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
+  }
+
+  /* Blurred snowflake for depth */
+  .blurred {
+    filter: blur(2px);
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  // Configuration for snowfall effect
+  const maxSnowflakes = 200; // Maximum number of snowflakes on screen
+  const snowflakeCount = 50; // Number of initial snowflakes to generate
+  const snowflakeSymbols = ["❄", "❅", "❆"]; // Different snowflake symbols for variety
+
+  // Function to generate a random number between min and max
+  function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Function to create a single snowflake element
+  function createSnowflake() {
+    // Check if the current number of snowflakes is below the limit
+    if (document.querySelectorAll(".snowflake").length >= maxSnowflakes) {
+      return; // Exit if the limit is reached
+    }
+
+    const snowflake = document.createElement("div");
+    snowflake.classList.add("snowflake");
+    snowflake.innerText =
+      snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+    snowflake.style.left = `${random(0, 100)}vw`; // Random horizontal position
+    snowflake.style.fontSize = `${random(0.8, 2)}em`; // Random size for variety
+    snowflake.style.opacity = random(0.5, 1); // Random opacity for a more natural look
+
+    // Animation properties for falling and drifting
+    snowflake.style.animationDuration = `${random(10, 20)}s`; // Random fall speed
+    snowflake.style.animationDelay = `${random(0, 5)}s`; // Random start delay
+    snowflake.style.setProperty("--horizontal-drift", `${random(-10, 10)}vw`); // Slight horizontal drift
+    snowflake.style.setProperty("--rotation", `${random(-360, 360)}deg`); // Random rotation for each flake
+
+    // Randomly add lens flare effect to some snowflakes
+    if (Math.random() > 0.8) {
+      snowflake.classList.add("flare");
+    }
+
+    // Randomly blur some snowflakes to add depth
+    if (Math.random() > 0.5) {
+      snowflake.classList.add("blurred");
+    }
+
+    document.body.appendChild(snowflake);
+
+    // Remove snowflake after it falls out of view
+    snowflake.addEventListener("animationend", () => {
+      snowflake.remove();
+    });
+  }
+
+  // Generate multiple snowflakes initially
+  for (let i = 0; i < snowflakeCount; i++) {
+    createSnowflake();
+  }
+
+  // Generate new snowflakes continuously for an ongoing effect
+  setInterval(createSnowflake, 500);
+</script>
