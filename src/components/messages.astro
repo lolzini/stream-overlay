@@ -1,0 +1,29 @@
+---
+import DashboardController from "@controllers/dashboard";
+
+const messages = DashboardController.getInstance().getMessages();
+---
+
+<section id="messages">
+  <h2>Messages:</h2>
+  {
+    messages.map((message) => (
+      <li>
+        <pre>
+          <code>{JSON.stringify(message)}</code>
+        </pre>
+      </li>
+    ))
+  }
+</section>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const eventSource = new EventSource("/api/stream");
+    eventSource.onmessage = (event) => {
+      const messages = document.getElementById("messages");
+      const li = document.createElement("li");
+      li.innerText = event.data;
+      messages.appendChild(li);
+    };
+  });
+</script>

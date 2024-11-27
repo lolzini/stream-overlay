@@ -1,0 +1,29 @@
+---
+import DashboardController from "@controllers/dashboard";
+
+const messages = DashboardController.getInstance().getMessages();
+
+const payload = messages.find((message) => message?.type === "showProjects");
+---
+
+<button
+  class="rounded bg-red-500 px-2"
+  id="toggle"
+  data-active={payload?.value!}
+>
+  Activar
+</button>
+<script is:inline>
+  const button = document.querySelector("#toggle");
+
+  button.addEventListener("click", () => {
+    const data = { type: "showProjects", value: !payload?.value };
+    fetch("/api/dashboard", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  });
+</script>

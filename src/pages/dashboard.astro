@@ -1,0 +1,33 @@
+---
+import Layout from "@components/layout.astro";
+import Messages from "@components/messages.astro";
+import Toggle from "@components/payloads/toggle.astro";
+---
+
+<Layout>
+  <h1>Dashboard</h1>
+  <Toggle />
+  <Messages />
+  <form id="message-form">
+    <input class="border" type="text" name="message" id="message" />
+    <button type="submit">Send</button>
+  </form>
+</Layout>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("message-form");
+    const input = document.getElementById("message");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = { message: input.value };
+      fetch("/api/dashboard", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      input.value = "";
+    });
+  });
+</script>
