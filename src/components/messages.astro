@@ -9,9 +9,7 @@ const messages = DashboardController.getInstance().getMessages();
   {
     messages.map((message) => (
       <li>
-        <pre>
-          <code>{JSON.stringify(message)}</code>
-        </pre>
+        <code>{JSON.stringify(message)}</code>
       </li>
     ))
   }
@@ -22,7 +20,9 @@ const messages = DashboardController.getInstance().getMessages();
     eventSource.onmessage = (event) => {
       const messages = document.getElementById("messages");
       const li = document.createElement("li");
-      li.innerText = event.data;
+      const code = document.createElement("code");
+      li.appendChild(code);
+      code.innerText = event.data;
       messages.appendChild(li);
     };
   });

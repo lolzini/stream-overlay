@@ -23,8 +23,8 @@ const users = res.sort(byInteractionCount);
               class:list={[
                 "text-6xl",
                 {
-                  "text-green-700": platform === "twitch",
-                  "text-rose-500": platform === "tiktok",
+                  "text-yellow-400": platform === "twitch",
+                  "text-sky-400": platform === "tiktok",
                 },
               ]}
             >
@@ -35,8 +35,8 @@ const users = res.sort(byInteractionCount);
       </section>
       <section class="flex flex-col gap-3">
         <h2 class="my-4 text-8xl">Soundtrack</h2>
+        <p class="text-6xl">La señora de las quesadillas</p>
         <p class="text-6xl">Playlists del shutú</p>
-        <p class="text-6xl">Villancicos navideños</p>
       </section>
       <section class="flex flex-col gap-3">
         <h2 class="my-4 text-8xl">Fotografía</h2>
@@ -49,6 +49,10 @@ const users = res.sort(byInteractionCount);
       <section class="flex flex-col gap-3">
         <h2 class="my-4 text-8xl">Producción</h2>
         <p class="text-6xl">lolzini</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="my-4 text-8xl">Asistente de guión</h2>
+        <p class="text-6xl">ChatGPT</p>
       </section>
       <section class="my-20 flex flex-col gap-10">
         <p class="flex min-h-screen items-center justify-center p-20 text-5xl">
@@ -66,15 +70,8 @@ const users = res.sort(byInteractionCount);
       "fixed bottom-0 left-0 right-0 top-0 flex h-screen flex-col items-center justify-center",
     ]}
   >
-    <div
-      class="relative mx-auto mt-20 w-fit rounded-full border-4 border-white bg-[#1a1a1a]"
-    >
-      <img class="rounded-full" src="/img/pp.png" alt="" />
-      <img
-        class="absolute top-0 scale-150"
-        src="/img/flower-crown.png"
-        alt=""
-      />
+    <div class="relative mx-auto mt-20 w-fit rounded-full border-4 bg-white">
+      <img class="max-w-96 rounded-full" src="/img/lovezini-crop.png" alt="" />
     </div>
     <p id="lolzini" class="z-50 -my-20 text-9xl">lolzini</p>
   </section>
@@ -84,14 +81,17 @@ const users = res.sort(byInteractionCount);
 
   /* @import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Pacifico&display=swap"); */
 
-  @import url("https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lobster&family=Mountains+of+Christmas:wght@400;700&family=Pacifico&display=swap");
+  /* @import url("https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lobster&family=Mountains+of+Christmas:wght@400;700&family=Pacifico&display=swap"); */
+
+  @import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Patrick+Hand&display=swap");
 
   h2 {
-    font-family: "Pacifico", cursive;
+    font-family: "Amatic SC", serif;
+    font-weight: 700;
   }
 
   body {
-    font-family: "Lobster", sans-serif;
+    font-family: "Patrick Hand", serif;
   }
 
   #lolzini {
