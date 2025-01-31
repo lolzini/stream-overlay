@@ -5,12 +5,14 @@ import Tiktok from "./tiktok.astro";
 import Twitch from "./twitch.astro";
 import Live from "@components/live.astro";
 import SteamUsername from "@components/stream-username.astro";
+import Youtube from "./youtube.astro";
 ---
 
 <InlineContainer
   class="absolute right-0 flex items-center justify-between gap-4"
 >
   <InlineContainer class="mt-1 gap-4 text-4xl text-white drop-shadow">
+    <Youtube />
     <Tiktok />
     <Twitch />
     <SteamUsername />
