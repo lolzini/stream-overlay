@@ -1,105 +1,44 @@
 ---
 import Layout from "@components/layout.astro";
-import { fetchAllPlatforms } from "./_helpers";
+import CreditSection from "./components/credit-section.astro";
+import CommunitySection from "./components/community-section.astro";
 
-const byInteractionCount = (a, b) =>
-  b["interaction_count"] - a["interaction_count"];
+const sections = [
+  {
+    title: "Soundtrack",
+    items: ["Playlists del shutú"],
+  },
+  {
+    title: "Fotografía",
+    items: ["OBS"],
+  },
+  {
+    title: "Dirección",
+    items: ["lolzini"],
+  },
+  {
+    title: "Producción",
+    items: ["lolzini", "Sonnet 3.5", "Sonnet 3.7"],
+  },
+  {
+    title: "Asistente de guión",
+    items: ["ChatGPT", "Claude"],
+  },
+];
 
-const date = new Date().toISOString().split("T")[0];
-
-const res = await fetchAllPlatforms(date);
-
-const users = res.sort(byInteractionCount);
+import "./styles.css";
 ---
 
 <Layout class="h-screen overflow-y-hidden bg-black text-white">
   <div id="container" class="mx-auto my-40 flex text-center opacity-0">
     <div class="flex flex-col gap-64">
-      <section class="flex flex-col gap-3">
-        <h2 class="my-4 text-8xl">Comunidad</h2>
-        {
-          users.map(({ username, platform }) => (
-            <p
-              class:list={[
-                "-ml-10 inline-flex items-center justify-center gap-4 text-6xl",
-                {
-                  "text-[#6441a5]": platform === "twitch",
-                  "text-white": platform === "tiktok",
-                  "text-red-500": platform === "youtube",
-                },
-              ]}
-            >
-              <span>
-                {platform === "tiktok" ? (
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 448 512"
-                    height="64px"
-                    width="64px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" />
-                  </svg>
-                ) : null}
-              </span>
-              <span>
-                {platform === "youtube" ? (
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 576 512"
-                    height="64px"
-                    width="64px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
-                  </svg>
-                ) : null}
-              </span>
-              <span>
-                {platform === "twitch" ? (
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    height="64px"
-                    width="64px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z" />
-                  </svg>
-                ) : null}
-              </span>
-              <span class="text-white">{username}</span>
-            </p>
-          ))
-        }
-      </section>
-      <section class="flex flex-col gap-3">
-        <h2 class="my-4 text-8xl">Soundtrack</h2>
-        <p class="text-6xl">La señora de las quesadillas</p>
-        <p class="text-6xl">Playlists del shutú</p>
-      </section>
-      <section class="flex flex-col gap-3">
-        <h2 class="my-4 text-8xl">Fotografía</h2>
-        <p class="text-6xl">OBS</p>
-      </section>
-      <section class="flex flex-col gap-3">
-        <h2 class="my-4 text-8xl">Dirección</h2>
-        <p class="text-6xl">lolzini</p>
-      </section>
-      <section class="flex flex-col gap-3">
-        <h2 class="my-4 text-8xl">Producción</h2>
-        <p class="text-6xl">lolzini</p>
-      </section>
-      <section class="flex flex-col gap-3">
-        <h2 class="my-4 text-8xl">Asistente de guión</h2>
-        <p class="text-6xl">ChatGPT</p>
-      </section>
+      <CommunitySection />
+
+      {
+        sections.map((section) => (
+          <CreditSection title={section.title} items={section.items} />
+        ))
+      }
       <section class="my-20 flex flex-col gap-10">
         <p class="flex min-h-screen items-center justify-center p-20 text-5xl">
           Ningún programador fue obligado a hacer horas extras durante la
@@ -116,72 +55,9 @@ const users = res.sort(byInteractionCount);
       "fixed bottom-0 left-0 right-0 top-0 flex h-screen flex-col items-center justify-center",
     ]}
   >
-    <div class="relative mx-auto mt-20 w-fit rounded-full border-4 bg-white">
+    <div class="relative mx-auto mt-0 w-fit rounded-full border-4 bg-white">
       <img class="max-w-96 rounded-full" src="/img/lovezini-crop.png" alt="" />
     </div>
-    <p id="lolzini" class="z-50 -my-20 text-9xl">lolzini</p>
+    <p id="lolzini" class="z-50 -my-20 text-9xl text-[#1a1a1a]">lolzini</p>
   </section>
 </Layout>
-<style>
-  /* @import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Caveat+Brush&family=Freckle+Face&display=swap"); */
-
-  /* @import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Pacifico&display=swap"); */
-
-  /* @import url("https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lobster&family=Mountains+of+Christmas:wght@400;700&family=Pacifico&display=swap"); */
-
-  @import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Patrick+Hand&display=swap");
-
-  h2 {
-    font-family: "Amatic SC", serif;
-    font-weight: 700;
-  }
-
-  body {
-    font-family: "Patrick Hand", serif;
-  }
-
-  #lolzini {
-    font-family: "Caveat Brush", serif;
-  }
-
-  #container {
-    animation: moveUp 60s linear 1;
-  }
-
-  #profile {
-    animation: fadeIn 90s linear 1;
-  }
-
-  @keyframes moveUp {
-    0% {
-      transform: translateY(150vh);
-      opacity: 1;
-    }
-    99% {
-      transform: translateY(-150%);
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-150%);
-    }
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0;
-    }
-    60% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-</style>

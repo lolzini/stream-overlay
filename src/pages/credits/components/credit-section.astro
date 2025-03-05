@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  items: string[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="flex flex-col gap-3">
+  <h2 class="my-4 text-8xl">{title}</h2>
+  {items.map((item) => <p class="text-6xl">{item}</p>)}
+</section>

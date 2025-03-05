@@ -1,0 +1,36 @@
+---
+import SocialIcon from "./social-icon.astro";
+import { fetchAllPlatforms } from "../_helpers";
+
+const byInteractionCount = (a, b) =>
+  b["interaction_count"] - a["interaction_count"];
+
+const date = new Date().toISOString().split("T")[0];
+const res = await fetchAllPlatforms(date);
+const users = res.sort(byInteractionCount);
+---
+
+<section class="flex flex-col gap-3">
+  <h2 class="my-4 text-8xl">Comunidad</h2>
+  {
+    users.map(({ username, platform }) => (
+      <p
+        class:list={[
+          "-ml-10 inline-flex items-center justify-center gap-4 text-6xl",
+          {
+            "text-[#6441a5]": platform === "twitch",
+            "text-inherit": platform === "tiktok",
+            "text-red-500": platform === "youtube",
+          },
+        ]}
+      >
+        <span>{platform === "tiktok" && <SocialIcon platform="tiktok" />}</span>
+        <span>
+          {platform === "youtube" && <SocialIcon platform="youtube" />}
+        </span>
+        <span>{platform === "twitch" && <SocialIcon platform="twitch" />}</span>
+        <span class="text-inherit">{username}</span>
+      </p>
+    ))
+  }
+</section>
