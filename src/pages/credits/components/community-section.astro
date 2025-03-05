@@ -11,12 +11,12 @@ const users = res.sort(byInteractionCount);
 ---
 
 <section class="flex flex-col gap-3">
-  <h2 class="my-4 text-8xl">Comunidad</h2>
+  <h2 class="custom-stroke my-4 text-8xl">Comunidad</h2>
   {
     users.map(({ username, platform }) => (
       <p
         class:list={[
-          "-ml-10 inline-flex items-center justify-center gap-4 text-6xl",
+          "custom-stroke -ml-10 inline-flex items-center justify-center gap-4 text-6xl",
           {
             "text-[#6441a5]": platform === "twitch",
             "text-inherit": platform === "tiktok",

@@ -10,18 +10,18 @@ const sections = [
   },
   {
     title: "Fotografía",
-    items: ["OBS"],
+    items: ["OBS", "Astro", "Veadotube"],
   },
   {
     title: "Dirección",
-    items: ["lolzini"],
+    items: ["lolzini", "el chat"],
   },
   {
     title: "Producción",
-    items: ["lolzini", "Sonnet 3.5", "Sonnet 3.7"],
+    items: ["lolzini", "la caridad"],
   },
   {
-    title: "Asistente de guión",
+    title: "Asistentes de guión",
     items: ["ChatGPT", "Claude"],
   },
 ];
@@ -29,7 +29,7 @@ const sections = [
 import "./styles.css";
 ---
 
-<Layout class="h-screen overflow-y-hidden bg-black text-white">
+<Layout class="custom-background h-screen overflow-y-hidden bg-white">
   <div id="container" class="mx-auto my-40 flex text-center opacity-0">
     <div class="flex flex-col gap-64">
       <CommunitySection />
@@ -40,7 +40,9 @@ import "./styles.css";
         ))
       }
       <section class="my-20 flex flex-col gap-10">
-        <p class="flex min-h-screen items-center justify-center p-20 text-5xl">
+        <p
+          class="custom-stroke flex min-h-screen items-center justify-center p-20 text-5xl"
+        >
           Ningún programador fue obligado a hacer horas extras durante la
           realización de este stream
         </p>
